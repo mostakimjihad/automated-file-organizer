@@ -50,6 +50,7 @@ arrange(){
 
 	if [ $count_sh != 0 ]
 	then
+	echo "shell          $count_sh"
 
 	if [ ! -d "$shell_path" ]
 	then
@@ -63,6 +64,7 @@ arrange(){
 
 	if [ $count_txt != 0 ]
 	then
+	echo "text           $count_txt"
 
 	if [ ! -d "$text_path" ]
 	then
@@ -75,6 +77,7 @@ arrange(){
 
 	if [ $count_doc != 0 ]
 	then
+	echo "doc            $count_doc"
 
 	if [ ! -d "$doc_path" ]
 	then
@@ -88,6 +91,7 @@ arrange(){
 
 	if [ $count_jpg != 0 -o $count_png != 0 ]
 	then
+	echo "image          $(( $count_jpg + $count_png ))"
 
 	if [ ! -d "$image_path" ]
 	then
@@ -102,6 +106,7 @@ arrange(){
 
 	if [ $count_mp3 != 0 ]
 	then
+	echo "music          $count_mp3"
 
 	if [ ! -d "$music_path" ]
 	then
@@ -115,6 +120,7 @@ arrange(){
 
 	if [ $count_mp4 != 0 ]
 	then
+	echo "video          $count_mp4"
 
 	if [ ! -d "$video_path" ]
 	then
@@ -127,6 +133,7 @@ arrange(){
 
 	if [ $count_pdf != 0 ]
 	then
+	echo "pdf            $count_pdf"
 
 	if [ ! -d "$pdf_path" ]
 	then
@@ -140,6 +147,7 @@ arrange(){
 
 	if [ $count_ppt != 0 ]
 	then
+	echo "ppt            $count_ppt"
 
 	if [ ! -d "$ppt_path" ]
 	then
@@ -163,8 +171,16 @@ echo  "Size     Path"
 echo "------------------------------------"
 du -sh $PWD
 echo "------------------------------------"
+echo "filetype     number"
+echo "------------------------------------"
 
 arrange
+
+echo "------------------------------------"
+echo "Your file successfully organized"
+echo "------------------------------------"
+
+
 
 
 if [ ! -d "$info_path" ]
