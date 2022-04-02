@@ -7,15 +7,17 @@ login(){
 	echo -n "Enter password : "
 	read -s password
 
-	if [ $username -ne "kirito" ]
+	if [[ "$username" != "kirito" ]]
 	then
-	    echo "Wrong username"
+	    echo 
+	    echo "XXX Wrong username XXX"
 		exit 1
 	fi
 
-	if [ $password -ne  "kirito" ]
+	if [[ "$password" !=  "kirito" ]]
 	then
-	    echo "Wrong password"
+	    echo 
+	    echo "!!! Wrong password !!!"
 		exit 1
     fi
 
@@ -34,7 +36,20 @@ video_path="${path}/video/"
 pdf_path="${path}/pdf/"
 ppt_path="${path}/ppt/"
 
+count_sh=`ls -1 *.sh 2>/dev/null | wc -l`
+count_txt=`ls -1 *.txt 2>/dev/null | wc -l`
+count_doc=`ls -1 *.doc 2>/dev/null | wc -l`
+count_jpg=`ls -1 *.jpg 2>/dev/null | wc -l`
+count_png=`ls -1 *.png 2>/dev/null | wc -l`
+count_mp3=`ls -1 *.mp3 2>/dev/null | wc -l`
+count_mp4=`ls -1 *.mp4 2>/dev/null | wc -l`
+count_pdf=`ls -1 *.pdf 2>/dev/null | wc -l`
+count_ppt=`ls -1 *.ppt 2>/dev/null | wc -l`
+
 arrange(){
+
+	if [ $count_sh != 0 ]
+	then
 
 	if [ ! -d "$shell_path" ]
 	then
@@ -44,13 +59,22 @@ arrange(){
 	    mv *.sh $shell_path
 	fi
 
+	fi
+
+	if [ $count_txt != 0 ]
+	then
+
 	if [ ! -d "$text_path" ]
 	then
 		mkdir text
-		mv *.text $text_path
+		mv *.txt $text_path
 	else
-	    mv *.text $text_path
+	    mv *.txt $text_path
 	fi
+	fi
+
+	if [ $count_doc != 0 ]
+	then
 
 	if [ ! -d "$doc_path" ]
 	then
@@ -59,6 +83,11 @@ arrange(){
 	else
 	    mv *.doc $doc_path
 	fi
+
+	fi
+
+	if [ $count_jpg != 0 -o $count_png != 0 ]
+	then
 
 	if [ ! -d "$image_path" ]
 	then
@@ -69,6 +98,10 @@ arrange(){
 	    mv *.jpg $image_path
 		mv *.png $image_path
 	fi
+	fi
+
+	if [ $count_mp3 != 0 ]
+	then
 
 	if [ ! -d "$music_path" ]
 	then
@@ -78,6 +111,11 @@ arrange(){
 	    mv *.mp3 $music_path
 	fi
 
+	fi
+
+	if [ $count_mp4 != 0 ]
+	then
+
 	if [ ! -d "$video_path" ]
 	then
 		mkdir video
@@ -85,6 +123,10 @@ arrange(){
 	else
 	    mv *.mp4 $video_path
 	fi
+	fi
+
+	if [ $count_pdf != 0 ]
+	then
 
 	if [ ! -d "$pdf_path" ]
 	then
@@ -94,6 +136,11 @@ arrange(){
 	    mv *.pdf $pdf_path
 	fi
 
+	fi
+
+	if [ $count_ppt != 0 ]
+	then
+
 	if [ ! -d "$ppt_path" ]
 	then
 		mkdir ppt
@@ -101,11 +148,14 @@ arrange(){
 	else
 	    mv *.ppt $ppt_path
 	fi
+	fi
 
 }
 
 login
 
+
+echo
 echo "------------------------------------"
 echo "Login Successful"
 echo "------------------------------------"
