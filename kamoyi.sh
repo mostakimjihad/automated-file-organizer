@@ -3,6 +3,8 @@
 
 login(){
 
+	figlet "kamoyi" -c | lolcat
+
 	read -p "Enter username : " username
 	echo -n "Enter password : "
 	read -s password
