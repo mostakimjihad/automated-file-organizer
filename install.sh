@@ -6,4 +6,6 @@ chmod +x tmp.sh
 echo "mode change done"
 echo "installing dependeces............"
 echo "please wait..."
-sudo apt install figlet lolcat
+sudo apt install figlet lolcat   #for the banner
+
+sudo apt install vim      #text editor

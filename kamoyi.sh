@@ -185,9 +185,3 @@ echo "------------------------------------"
 
 
 
-if [ ! -d "$info_path" ]
-then
-	mkdir info
-fi
-
-
