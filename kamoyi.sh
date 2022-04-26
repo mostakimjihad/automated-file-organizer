@@ -16,7 +16,7 @@ login(){
 		exit 1
 	fi
 
-	if [[ "$password" !=  "kirito" ]]
+	if [[ "$password" !=  "rodshi" ]]
 	then
 	    echo 
 	    echo "!!! Wrong password !!!"
@@ -37,16 +37,38 @@ music_path="${path}/music/"
 video_path="${path}/video/"
 pdf_path="${path}/pdf/"
 ppt_path="${path}/ppt/"
+others_path="${path}/others/"
+others="${path}/*"
+
+
+
+#inside pdf
+
+assignment_path="${pdf_path}/course_assignment/"
+book_path="${pdf_path}/dep_book/"
+labreport_path="${pdf_path}/lab_report/"
+
+
 
 count_sh=`ls -1 *.sh 2>/dev/null | wc -l`
 count_txt=`ls -1 *.txt 2>/dev/null | wc -l`
 count_doc=`ls -1 *.doc 2>/dev/null | wc -l`
+count_docx=`ls -1 *.docx 2>/dev/null | wc -l`
 count_jpg=`ls -1 *.jpg 2>/dev/null | wc -l`
 count_png=`ls -1 *.png 2>/dev/null | wc -l`
 count_mp3=`ls -1 *.mp3 2>/dev/null | wc -l`
 count_mp4=`ls -1 *.mp4 2>/dev/null | wc -l`
 count_pdf=`ls -1 *.pdf 2>/dev/null | wc -l`
 count_ppt=`ls -1 *.ppt 2>/dev/null | wc -l`
+count_others=`ls -1 2>/dev/null | wc -l`
+
+
+
+# count for  pdf and doc
+
+count_labreport=`ls | grep "labreport" | wc -l`
+count_assignment=`ls | grep "assignment" | wc -l`
+count_book=`ls | grep "book" | wc -l`
 
 arrange(){
 
@@ -63,6 +85,7 @@ arrange(){
 	fi
 
 	fi
+	
 
 	if [ $count_txt != 0 ]
 	then
@@ -141,8 +164,152 @@ arrange(){
 	then
 		mkdir pdf
 		mv *.pdf $pdf_path
+
+		cd $pdf_path
+
+		if [ $count_assignment != 0 ]
+		then
+			if [ ! -d "$assignment_path" ]
+			then
+
+				mkdir course_assignment
+
+				ls | grep "assignment" > data.txt
+
+				for (( i=1; i<=count_assignment; i++ ))
+				do
+					tem="${i}p"
+					temp=$(cat data.txt | sed -n $tem)
+	
+					mv $temp $assignment_path 
+				done
+
+				rm data.txt
+				
+			fi
+		fi
+
+		if [ $count_labreport != 0 ]
+		then
+			if [ ! -d "$labreport_path" ]
+			then
+
+				mkdir lab_report
+
+				ls | grep "labreport" > data.txt
+
+				for (( i=1; i<=count_labreport; i++ ))
+				do
+					tem="${i}p"
+					temp=$(cat data.txt | sed -n $tem)
+	
+					mv $temp $labreport_path 
+				done
+
+				rm data.txt
+				
+			fi
+		fi
+
+		if [ $count_book != 0 ]
+		then
+			if [ ! -d "$book_path" ]
+			then
+
+				mkdir dep_book
+
+				ls | grep "book" > data.txt
+
+				for (( i=1; i<=count_book; i++ ))
+				do
+					tem="${i}p"
+					temp=$(cat data.txt | sed -n $tem)
+	
+					mv $temp $book_path 
+				done
+
+				rm data.txt
+				
+			fi
+		fi
+
+
+		cd ..
+
 	else
 	    mv *.pdf $pdf_path
+
+		cd $pdf_path
+
+		if [ $count_assignment != 0 ]
+		then
+			if [ ! -d "$assignment_path" ]
+			then
+
+				mkdir course_assignment
+
+				ls | grep "assignment" > data.txt
+
+				for (( i=1; i<=count_assignment; i++ ))
+				do
+					tem="${i}p"
+					temp=$(cat data.txt | sed -n $tem)
+	
+					mv $temp $assignment_path 
+				done
+
+				rm data.txt
+				
+			fi
+		fi
+
+
+		if [ $count_labreport != 0 ]
+		then
+			if [ ! -d "$labreport_path" ]
+			then
+
+				mkdir labreport
+
+				ls | grep "lab report" > data.txt
+
+				for (( i=1; i<=count_labreport; i++ ))
+				do
+					tem="${i}p"
+					temp=$(cat data.txt | sed -n $tem)
+	
+					mv $temp $labreport_path 
+				done
+
+				rm data.txt
+				
+			fi
+		fi
+
+		if [ $count_book != 0 ]
+		then
+			if [ ! -d "$book_path" ]
+			then
+
+				mkdir dep_book
+
+				ls | grep "book" > data.txt
+
+				for (( i=1; i<=count_book; i++ ))
+				do
+					tem="${i}p"
+					temp=$(cat data.txt | sed -n $tem)
+	
+					mv $temp $book_path 
+				done
+
+				rm data.txt
+				
+			fi
+		fi
+
+		cd ..
+
 	fi
 
 	fi
